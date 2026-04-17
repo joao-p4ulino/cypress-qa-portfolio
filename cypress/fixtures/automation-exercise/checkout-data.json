@@ -1,0 +1,21 @@
+{
+  "billingAddress": {
+    "firstName": "QA",
+    "lastName": "Portfolio",
+    "company": "Test Corp",
+    "address": "123 Test Street",
+    "address2": "Suite 100",
+    "country": "United States",
+    "state": "California",
+    "city": "Los Angeles",
+    "zipcode": "90001",
+    "mobile": "5551234567"
+  },
+  "paymentDetails": {
+    "nameOnCard": "QA Portfolio",
+    "cardNumber": "4111111111111111",
+    "cvc": "123",
+    "expiryMonth": "12",
+    "expiryYear": "2027"
+  }
+}

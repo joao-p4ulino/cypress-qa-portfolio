@@ -1,0 +1,103 @@
+name: Cypress Tests
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  # ──────────────────────────────────────────────────────────────────
+  # Job 1: Deterministic suite (automationexercise.com) — REQUIRED
+  # Blocks merge if it fails. Full POM + API + checkout E2E showcase.
+  # ──────────────────────────────────────────────────────────────────
+  automation-exercise:
+    name: AutomationExercise Suite (deterministic)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Run AutomationExercise specs
+        uses: cypress-io/github-action@v6
+        with:
+          install: false
+          command: npm run cy:run:automation-exercise
+          browser: chrome
+
+      - name: Upload test artifacts on failure
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: cypress-artifacts-ae-${{ github.run_id }}
+          path: |
+            cypress/screenshots/
+            cypress/videos/
+          retention-days: 7
+
+      - name: Upload HTML report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mochawesome-report-ae-${{ github.run_id }}
+          path: reports/
+          retention-days: 14
+
+  # ──────────────────────────────────────────────────────────────────
+  # Job 2: Amazon smoke suite — non-blocking (3rd-party, may be flaky)
+  # Uses continue-on-error so it never blocks a PR merge.
+  # Documented rationale in README.md § Disclaimer.
+  # ──────────────────────────────────────────────────────────────────
+  amazon-smoke:
+    name: Amazon Smoke Suite (exploration — non-blocking)
+    runs-on: ubuntu-latest
+    continue-on-error: true
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Amazon smoke specs
+        uses: cypress-io/github-action@v6
+        with:
+          install: false
+          command: npm run cy:smoke
+          browser: chrome
+        env:
+          BASE_URL: https://www.amazon.com.br
+
+      - name: Upload test artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cypress-artifacts-amazon-smoke-${{ github.run_id }}
+          path: |
+            cypress/screenshots/
+            cypress/videos/
+            reports/
+          retention-days: 7

@@ -1,0 +1,12 @@
+{
+  "searchTerms": [
+    { "term": "top", "expectedMinResults": 1 },
+    { "term": "jeans", "expectedMinResults": 1 },
+    { "term": "dress", "expectedMinResults": 1 }
+  ],
+  "invalidSearchTerm": "xyznotexistingproduct123",
+  "firstProduct": {
+    "name": "Blue Top",
+    "category": "Women > Tops"
+  }
+}

@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+
+# Cypress artifacts
+cypress/videos/
+cypress/screenshots/
+cypress/downloads/
+cypress/reports/
+reports/
+mochawesome-report/
+allure-results/
+allure-report/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Build / IDE
+dist/
+.DS_Store
+*.log
+.idea/
+.vscode/
+*.suo
+*.user
+
+# Tooling caches
+.playwright-mcp/
+.claude/
+
+# TypeScript
+*.tsbuildinfo

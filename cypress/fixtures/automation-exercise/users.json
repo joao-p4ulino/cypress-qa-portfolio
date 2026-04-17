@@ -1,0 +1,19 @@
+{
+  "validUser": {
+    "name": "QA Portfolio User",
+    "email": "qa.portfolio.test@example.com",
+    "password": "Test@12345",
+    "firstName": "QA",
+    "lastName": "Portfolio",
+    "address": "123 Test Street",
+    "country": "United States",
+    "state": "California",
+    "city": "Los Angeles",
+    "zipcode": "90001",
+    "mobile": "5551234567"
+  },
+  "invalidUser": {
+    "email": "invalid@nonexistent.com",
+    "password": "wrongpassword123"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "name": "cypress-qa-portfolio",
+  "version": "1.0.0",
+  "description": "Cypress QA Portfolio — Amazon.com.br smoke/exploration + AutomationExercise deterministic suite",
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "cy:run:amazon": "cypress run --spec 'cypress/e2e/amazon/**/*.cy.ts'",
+    "cy:run:automation-exercise": "cypress run --spec 'cypress/e2e/automation-exercise/**/*.cy.ts'",
+    "cy:smoke": "cypress run --spec 'cypress/e2e/amazon/smoke/**/*.cy.ts'",
+    "lint": "eslint cypress --ext .ts",
+    "lint:fix": "eslint cypress --ext .ts --fix",
+    "format": "prettier --write 'cypress/**/*.ts'",
+    "format:check": "prettier --check 'cypress/**/*.ts'",
+    "typecheck": "tsc --noEmit",
+    "report:merge": "mochawesome-merge reports/*.json -o reports/combined.json",
+    "report:generate": "marge reports/combined.json -f index -o reports",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "cypress": "^15.13.1",
+    "cypress-mochawesome-reporter": "^3.8.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-cypress": "^3.0.0",
+    "husky": "^9.0.0",
+    "lint-staged": "^15.0.0",
+    "mochawesome-merge": "^4.3.0",
+    "mochawesome-report-generator": "^6.2.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.4.0"
+  },
+  "lint-staged": {
+    "cypress/**/*.ts": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  }
+}

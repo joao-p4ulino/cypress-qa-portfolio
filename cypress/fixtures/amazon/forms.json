@@ -1,0 +1,7 @@
+{
+  "invalidLogin": {
+    "invalidEmail": "emailwithoutat",
+    "emptyEmail": "",
+    "emptyPassword": ""
+  }
+}

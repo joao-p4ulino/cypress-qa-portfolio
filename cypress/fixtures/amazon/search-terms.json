@@ -1,0 +1,9 @@
+{
+  "validTerms": [
+    { "term": "livro de programação", "expectedText": "programação" },
+    { "term": "fone de ouvido bluetooth", "expectedText": "fone" },
+    { "term": "notebook dell", "expectedText": "notebook" },
+    { "term": "mouse sem fio", "expectedText": "mouse" },
+    { "term": "camiseta masculina", "expectedText": "camiseta" }
+  ]
+}

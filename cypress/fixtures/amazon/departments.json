@@ -1,0 +1,7 @@
+{
+  "departments": [
+    { "name": "Livros", "urlContains": "Livros" },
+    { "name": "Games", "urlContains": "Games" },
+    { "name": "Casa", "urlContains": "Casa" }
+  ]
+}
